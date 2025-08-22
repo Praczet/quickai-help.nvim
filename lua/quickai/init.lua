@@ -59,7 +59,7 @@ local defaults = {
 M._cfg = vim.deepcopy(defaults)
 
 -- ===== heuristics =====
-local infer = require("quickai-help.heuristics").infer_tag
+local infer = require("quickai.heuristics").infer_tag
 
 -- ===== transport =====
 local function run_curl(args)
@@ -125,7 +125,7 @@ local function request(cfg, question)
 end
 
 -- ===== UI =====
-local ui = require("quickai-help.ui")
+local ui = require("quickai.ui")
 
 local function show(cfg, text)
 	return ui.show_popup(cfg.popup, text)
