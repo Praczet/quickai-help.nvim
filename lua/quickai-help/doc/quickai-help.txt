@@ -1,0 +1,38 @@
+*quickai.nvim*                                      Ask OpenAI inside Neovim.
+
+USAGE                                                          *quickai-usage*
+
+  :Ask [question]
+    Ask a question in a popup. If [question] is omitted, a prompt appears.
+
+  Visual mode:
+    <leader>qa     Ask about the current selection (default mapping).
+
+In the popup:
+  h                Open the suggested Vim help tag (if shown as 'Help: :h tag').
+  q                Close the popup.
+
+SETUP                                                         *quickai-setup*
+
+  require('quickai').setup({
+    model = 'gpt-4o-mini',
+    endpoint = 'https://api.openai.com/v1/responses',
+    popup = { width = 0.6, height = 12, border = 'rounded', map_help_key='h', map_close_key='q' },
+    mappings = { visual_ask = { lhs = '<leader>qa', desc = 'Ask AI about selection' } },
+    system_preamble = '... concise rules ...',
+    heuristics = { ["window"] = "windows" }, -- extend built-ins
+  })
+
+ENVIRONMENT                                              *quickai-environment*
+
+  OPENAI_API_KEY   Required. Your OpenAI API key (sk-...).
+  OPENAI_MODEL     Optional. Overrides 'model' option.
+  OPENAI_API_BASE  Optional. Change base URL (e.g. enterprise proxy).
+
+NOTES                                                         *quickai-notes*
+
+  - Answers aim to be brief and end with a :help tag when relevant.
+  - The plugin shells out to curl. Requires Neovim 0.9+ (0.10+ recommended).
+
+LICENSE                                                      *quickai-license*
+  MIT
